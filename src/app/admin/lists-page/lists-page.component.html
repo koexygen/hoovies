@@ -1,0 +1,42 @@
+<div class="datatable responsive-table">
+    <datatable-header pluralResourceName="lists">
+        <ng-container leftContent>
+            <a mat-raised-button routerLink="/lists/new" color="accent" *ngIf="currentUser.hasPermission('lists.create')" trans>Add</a>
+        </ng-container>
+        <button rightContent mat-raised-button color="accent" (click)="maybeDeleteSelectedLists()" *ngIf="currentUser.hasPermission('lists.delete')" trans>Delete Selected</button>
+    </datatable-header>
+    <table class="material-table">
+        <thead>
+        <tr>
+            <th table-header-checkbox></th>
+            <th table-sort-header trans>Name</th>
+            <th table-sort-header="user_id" trans>Owner</th>
+            <th table-sort-header="items_count" trans>Item Count</th>
+            <th table-sort-header trans>Public</th>
+            <th table-sort-header="updated_at" trans>Last Updated</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let list of lists$ | async">
+            <td [table-body-checkbox]="list.id"></td>
+            <td data-label="Name">{{list.name}}</td>
+            <td data-label="Owner">
+                <user-column [user]="list.user"></user-column>
+            </td>
+            <td data-label="Item Count">{{list.items_count}}</td>
+            <td data-label="Public">{{list.public ? 'Yes' : 'No'}}</td>
+            <td data-label="Last Updated">{{list.updated_at | formattedDate}}</td>
+            <td class="edit-column">
+                <a mat-icon-button [routerLink]="['/lists', list.id, 'edit']" *ngIf="currentUser.hasPermission('lists.update')" [matTooltip]="'Edit list' | trans">
+                    <mat-icon svgIcon="edit"></mat-icon>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <no-results-message svgImage="task-list.svg" *ngIf="datatable.paginator.noResults$ | async">
+        <span primary-text trans>No lists have been created yet</span>
+    </no-results-message>
+    <datatable-footer></datatable-footer>
+</div>

@@ -1,0 +1,18 @@
+{
+    "/secure": {
+        "target": "http://hoovies.net",
+        "secure": false
+    },
+    "/__clockwork": {
+        "target": "http://hoovies.net/public",
+        "secure": false
+    },
+    "/storage": {
+        "target": "http://hoovies.net",
+        "secure": false
+    },
+    "/client": {
+        "target": "http://hoovies.net",
+        "secure": false
+    }
+}

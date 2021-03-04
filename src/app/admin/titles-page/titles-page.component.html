@@ -1,0 +1,48 @@
+<div class="datatable responsive-table">
+    <datatable-header pluralResourceName="titles">
+        <ng-container leftContent *ngIf="currentUser.hasPermission('titles.create')">
+            <a mat-raised-button routerLink="/admin/titles/new" color="accent" trans>Add</a>
+            <button mat-button (click)="openImportMediaModal()" trans>Import</button>
+        </ng-container>
+        <button rightContent mat-raised-button color="accent" (click)="maybeDeleteSelectedTitles()" *ngIf="currentUser.hasPermission('titles.delete')" trans>Delete Selected</button>
+    </datatable-header>
+    <table class="material-table">
+        <thead>
+        <tr>
+            <th table-header-checkbox></th>
+            <th table-sort-header trans>Name</th>
+            <th table-sort-header trans>Type</th>
+            <th table-sort-header trans>Release Date</th>
+            <th table-sort-header trans>Rating</th>
+            <th table-sort-header="views" trans>Local Views</th>
+            <th table-sort-header trans>Popularity</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let title of titles$ | async">
+            <td [table-body-checkbox]="title.id"></td>
+            <td>
+                <div class="column-with-image">
+                    <media-image [src]="title.poster" size="small"></media-image>
+                    <a [routerLink]="urls.mediaItem(title)" class="link">{{title.name}}</a>
+                </div>
+            </td>
+            <td data-label="Type">{{(title.is_series ? 'Series' : 'Movie') | trans}}</td>
+            <td data-label="Release Date">{{title.release_date | formattedDate}}</td>
+            <td data-label="Rating">{{title.rating ? title.rating + '/10' : '-'}}</td>
+            <td data-label="Local Views">{{title.views}}</td>
+            <td data-label="Popularity">{{title.popularity}}</td>
+            <td class="edit-column">
+                <a mat-icon-button [routerLink]="['/admin/titles', title.id, 'edit']" *ngIf="currentUser.hasPermission('titles.update')" [matTooltip]="'Edit title' | trans">
+                    <mat-icon svgIcon="edit"></mat-icon>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <no-results-message svgImage="movie-night.svg" *ngIf="datatable.paginator.noResults$ | async">
+        <span primary-text trans>No titles have been created yet</span>
+    </no-results-message>
+    <datatable-footer></datatable-footer>
+</div>

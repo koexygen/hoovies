@@ -1,0 +1,55 @@
+@import "variables";
+
+media-grid {
+  display: grid;
+
+  .play-button {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  media-image {
+    display: block;
+    position: relative;
+  }
+
+  img {
+    border-radius: 4px;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease-in-out;
+    @include mat-elevation(1);
+  }
+
+  figure {
+    position: relative;
+    overflow: hidden;
+
+    &:hover media-image img {
+      @include mat-elevation(6);
+    }
+  }
+
+  .title {
+    display: block;
+    color: mat-color($app-foreground, text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 12px auto 0;
+
+    &:hover {
+      color: mat-color($app-accent, default);
+    }
+  }
+
+  .subtitle {
+    color: mat-color($app-foreground, secondary-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,16 @@
+<figure class="item" *ngFor="let item of items; trackBy: trackByFn" [title]="item.name">
+    <media-image [mode]="mode" [src]="mode === 'portrait' ? item.poster : item.backdrop" size="medium" [alt]="item.name + ' image'" [link]="urls.mediaItem(item)">
+        <button mat-mini-fab (click)="playVideo(item)" class="play-button play-button-animation" *ngIf="showPlayButton && item.type === 'title' && item?.videos?.length">
+            <mat-icon svgIcon="play-arrow"></mat-icon>
+        </button>
+    </media-image>
+    <figcaption>
+        <a class="title" [routerLink]="urls.mediaItem(item)">{{item.name}}</a>
+        <div class="subtitle">
+            <span *ngIf="mode === 'landscape' && item.certification" class="subtitle-item certification">{{item.certification}}</span>
+            <genre-widget *ngIf="item.genres?.length" class="subtitle-item" [genres]="item.genres" [limit]="2" [separator]="mode === 'landscape' ? ', ' : '/'"></genre-widget>
+            <span *ngIf="mode === 'landscape' && item.year" class="subtitle-item last">{{(item.is_series ? 'Series' : 'Movie') | trans}} ({{item.year}})</span>
+        </div>
+    </figcaption>
+    <streamable-label [item]="item"></streamable-label>
+</figure>

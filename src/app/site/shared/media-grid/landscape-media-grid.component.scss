@@ -1,0 +1,34 @@
+@import "variables";
+
+.landscape-media-grid {
+  grid-row-gap: 40px;
+  grid-column-gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+  @media only screen and (max-width: 555px) {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .subtitle-item {
+    vertical-align: middle;
+    line-height: 17px;
+
+    &:not(.last):after {
+      content: "•";
+      padding: 0 4px;
+      vertical-align: middle;
+    }
+  }
+
+  .certification {
+    text-transform: uppercase;
+  }
+
+  genre-widget {
+    display: inline-block;
+  }
+}

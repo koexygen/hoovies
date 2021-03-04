@@ -1,0 +1,46 @@
+<div class="datatable responsive-table">
+    <datatable-header pluralResourceName="people">
+        <ng-container leftContent *ngIf="currentUser.hasPermission('people.create')">
+            <a mat-raised-button routerLink="/admin/people/new" color="accent" trans>Add</a>
+            <button mat-button (click)="openImportMediaModal()" trans>Import</button>
+        </ng-container>
+        <button rightContent mat-raised-button color="accent" (click)="maybeDeleteSelectedPeople()" *ngIf="currentUser.hasPermission('people.delete')" trans>Delete Selected</button>
+    </datatable-header>
+    <table class="material-table">
+        <thead>
+        <tr>
+            <th table-header-checkbox></th>
+            <th table-sort-header trans>Name</th>
+            <th table-sort-header trans>Birth Date</th>
+            <th table-sort-header="views" trans>Local Views</th>
+            <th table-sort-header trans>Popularity</th>
+            <th table-sort-header="updated_at" trans>Last Updated</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let person of people$ | async">
+            <td [table-body-checkbox]="person.id"></td>
+            <td>
+                <div class="column-with-image">
+                    <media-image [src]="person.poster" size="small"></media-image>
+                    <a [routerLink]="urls.mediaItem(person)" class="link">{{person.name}}</a>
+                </div>
+            </td>
+            <td data-label="Birth Date">{{person.birth_date ? (person.birth_date | formattedDate) : '-'}}</td>
+            <td data-label="Local Views">{{person.views}}</td>
+            <td data-label="Popularity">{{person.popularity}}</td>
+            <td data-label="Last Updated">{{person.updated_at | formattedDate}}</td>
+            <td class="edit-column">
+                <a mat-icon-button [routerLink]="['/admin/people', person.id, 'edit']" *ngIf="currentUser.hasPermission('people.update')" [matTooltip]="'Edit person' | trans">
+                    <mat-icon svgIcon="edit"></mat-icon>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <no-results-message svgImage="awards.svg" *ngIf="datatable.paginator.noResults$ | async">
+        <span primary-text trans>No people have been created yet</span>
+    </no-results-message>
+    <datatable-footer></datatable-footer>
+</div>

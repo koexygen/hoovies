@@ -1,0 +1,61 @@
+<div [formGroup]="form" class="many-inputs">
+    <div class="input-container">
+        <label for="video-source-filter" trans>Source</label>
+        <select id="video-source-filter" formControlName="source">
+            <option [ngValue]="null" trans>All</option>
+            <option value="local" trans>Local</option>
+            <option value="external" trans>External</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="video-category-filter" trans>Category</label>
+        <select id="video-category-filter" formControlName="category">
+            <option [ngValue]="null" trans>All</option>
+            <option value="trailer" trans>Trailer</option>
+            <option value="clip" trans>Clip</option>
+            <option value="featurette" trans>Featurette</option>
+            <option value="teaser" trans>Teaser</option>
+            <option value="full" trans>Full Movie or episode</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="video-approved-filter" trans>Approved</label>
+        <select id="video-approved-filter" formControlName="approved">
+            <option [ngValue]="null" trans>All</option>
+            <option [ngValue]="true" trans>Approved only</option>
+            <option [ngValue]="false" trans>Not approved only</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="video-quality-filter" trans>Quality</label>
+        <select id="video-quality-filter" formControlName="quality">
+            <option [ngValue]="null" trans>All</option>
+            <option value="sd" trans>SD</option>
+            <option value="hd" trans>HD</option>
+            <option value="4k" trans>4K</option>
+            <option value="hdr" trans>HDR</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <label for="video-type-filter" trans>Type</label>
+        <select id="video-type-filter" formControlName="type">
+            <option [ngValue]="null" trans>All</option>
+            <option value="embed" trans>Embed</option>
+            <option value="video" trans>Direct Video</option>
+            <option value="frame" trans>Frame</option>
+            <option value="external" trans>Remote Link</option>
+        </select>
+    </div>
+
+    <div class="input-container">
+        <select-user-input formControlName="user"></select-user-input>
+    </div>
+
+    <div class="input-container">
+        <select-title-input [formGroup]="form"></select-title-input>
+    </div>
+</div>
