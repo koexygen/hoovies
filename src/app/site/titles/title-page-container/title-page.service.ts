@@ -96,9 +96,9 @@ export class TitlePageService {
 
     private setPrimaryVideo() {
         if (this.settings.get('streaming.prefer_full')) {
-            this.primaryVideo = this.title.videos.find(video => video.category === 'full' && video.type !== 'external');
+            this.primaryVideo = this.title.videos.find(video => video.category === 'full' );
         } else {
-            this.primaryVideo = this.title.videos.find(video => video.category !== 'full' && video.type !== 'external');
+            this.primaryVideo = this.title.videos.find(video => video.category !== 'full' );
         }
     }
 
