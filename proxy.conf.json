@@ -1,18 +1,18 @@
 {
     "/secure": {
-        "target": "http://hoovies.net",
+        "target": "http://localhost",
         "secure": false
     },
     "/__clockwork": {
-        "target": "http://hoovies.net/public",
+        "target": "http://localhost/public",
         "secure": false
     },
     "/storage": {
-        "target": "http://hoovies.net",
+        "target": "http://localhost",
         "secure": false
     },
     "/client": {
-        "target": "http://hoovies.net",
+        "target": "http://localhost",
         "secure": false
     }
 }

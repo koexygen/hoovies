@@ -10,11 +10,11 @@ gulp.registry(hub);
 
 gulp.task('dist', function(done) {
     //remove old dist files from laravel public folder
-    //gulp.src('./../server/public/client', {read: false}).pipe(clean({force: true}));
-    rimraf.sync('./../server/public/client');
+    //gulp.src('./../public/client', {read: false}).pipe(clean({force: true}));
+    rimraf.sync('./../public/client');
 
     //copy dist folder into laravel public folder
-    gulp.src(['./dist/client/browser/**/*', '!./dist/client/browser/index.html', '!./dist/client/browser/stats.json']).pipe(gulp.dest('./../server/public/client'));
+    gulp.src(['./dist/client/browser/**/*', '!./dist/client/browser/index.html', '!./dist/client/browser/stats.json']).pipe(gulp.dest('./../public/client'));
 
     const $ = cheerio.load(fs.readFileSync('./dist/client/browser/index.html', 'utf8'));
 
@@ -38,7 +38,7 @@ gulp.task('dist', function(done) {
     const cssSearch = /{{--angular styles begin--}}[\s\S]*{{--angular styles end--}}/;
     const cssReplaceStr = '{{--angular styles begin--}}' + "\n\t\t" + styles.join("\n\t\t") + "\n\t{{--angular styles end--}}";
 
-    const laravelViewPath = './../server/resources/views/app.blade.php';
+    const laravelViewPath = './../resources/views/app.blade.php';
 
     //replace app stylesheet links and js script tags with new ones
     let content = fs.readFileSync(laravelViewPath, 'utf8');
