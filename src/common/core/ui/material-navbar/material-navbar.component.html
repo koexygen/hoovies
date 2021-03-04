@@ -23,13 +23,12 @@
     </ng-container>
 
     <custom-menu [position]="menuPosition" [horizontal]="true" [class.color-accent]="color === 'accent'" *ngIf="!(mobileOrTablet$ | async)"></custom-menu>
-
-<!--    fb like button-->
-<!--    <div class="fb-like" data-href="https://www.facebook.com/hooviesnet/" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>-->
-    <!--    end fb like button-->
+<!--fb like begin-->
     <div style="transform: translateY(30%)">
     <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Fhooviesnet%2F&width=150&layout=button_count&action=like&size=small&share=true&height=46&appId=443487470038176" width="150" height="46" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
     </div>
+    <!--fb like end-->
+
     <div class="right-side-actions" *ngIf="!hideRightSideActions">
         <ng-content select="[rightContent]"></ng-content>
         <notification-button *ngIf="!isMobile() && config.get('notifications.integrated') && currentUser.isLoggedIn$ | async"></notification-button>
