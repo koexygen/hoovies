@@ -21,8 +21,13 @@
   //left: 50%;
   border-radius: 100%;
   //animation: ball-spin-clockwise 1s infinite ease-in-out
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
+
+  @media only screen and (max-width: 375px) {
+    width: 7rem;
+    height: 7rem;
+  }
 }
 
 .la-ball-spin-clockwise > div:nth-child(1) {

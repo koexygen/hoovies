@@ -202,10 +202,20 @@ material-navbar {
       display: none;
     }
   }
+
+  .fb-like-button {
+    transform: translateY(33%);
+
+    @media only screen and (max-width: 375px) {
+        transform: translate(-10px,33%);
+        width: 0;
+    }
+  }
 }
 
 .be-dark-mode material-navbar.primary:not(.mobile-search-active) .nav-searchbar input {
   border: 1px solid mat-color($app-foreground, divider);
   background-color: transparent;
 }
+
 
